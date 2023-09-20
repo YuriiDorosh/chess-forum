@@ -1,0 +1,1 @@
+![db](diagrams/db_architecture_image.png)
