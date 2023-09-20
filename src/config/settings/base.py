@@ -36,6 +36,7 @@ LOCAL_APPS = [
     "users",
     "posts",
     "rooms",
+    "room_messages",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
