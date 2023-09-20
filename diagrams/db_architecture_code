@@ -1,0 +1,33 @@
+Table user {
+  id int [pk]
+  username varchar(30) [not null]
+  bio text
+  photo photo
+  telegram_id varchar(30)
+  chess_profile_url varchar(60)
+  subscriber bool[defaultFalse]
+}
+
+Table user_post {
+  id int [pk]
+  user_id int [ref: > user.id]
+  title varchar(100) [not null]
+  game_link varchar(60)
+  body text
+  date_added datetime
+}
+
+Table room {
+  id int [pk]
+  name varchar(30) [not null]
+  slug varchar(30) [unique]
+  premium bool[defaultFalse]
+}
+
+Table message {
+  id int [pk]
+  room_id int [ref: > room.id]
+  user_id int [ref: > user.id]
+  content text
+  date_added datetime 
+}
