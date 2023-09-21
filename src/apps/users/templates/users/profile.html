@@ -84,25 +84,26 @@
                 <p><strong>Subscriber:</strong> Yes</p>
             {% endif %}
         </div>
+
+        {% if user == request.user %}
+            <div class="profile-info left">
+                <a href="{% url 'users:profile_edit' user.id %}" class="btn btn-primary">Edit Profile</a>
+            </div>
+        {% endif %}
+    
+
+
         <div class="profile-posts right">
+            {% for post in user_posts %}
             <div class="post">
-                <h3>Post Title 1</h3>
-                <p><strong>Game Link:</strong> <a href="https://example.com/game1" target="_blank">https://example.com/game1</a></p>
-                <p><strong>Body:</strong> This is the body of the first post.</p>
-                <p><strong>Date:</strong> September 21, 2023</p>
+                <h3>{{ post.title }}</h3>
+                {% if post.game_link %}
+                    <p><strong>Game Link:</strong> <a href="{{ post.game_link }}" target="_blank">{{ post.game_link }}</a></p>
+                {% endif %}
+                <p><strong>Body:</strong> {{ post.body }}</p>
+                <p><strong>Date:</strong> {{ post.date_added }}</p>
             </div>
-            <div class="post">
-                <h3>Post Title 2</h3>
-                <p><strong>Game Link:</strong> <a href="https://example.com/game2" target="_blank">https://example.com/game2</a></p>
-                <p><strong>Body:</strong> This is the body of the second post.</p>
-                <p><strong>Date:</strong> September 22, 2023</p>
-            </div>
-            <div class="post">
-                <h3>Post Title 3</h3>
-                <p><strong>Game Link:</strong> <a href="https://example.com/game2" target="_blank">https://example.com/game2</a></p>
-                <p><strong>Body:</strong> This is the body of the third post.</p>
-                <p><strong>Date:</strong> September 22, 2023</p>
-            </div>
+            {% endfor %}
         </div>
         <div class="clear"></div>
     </div>
