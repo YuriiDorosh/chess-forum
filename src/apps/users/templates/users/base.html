@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+    <style>
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li:first-child {
+            margin-left: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .site-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logout-button {
+            text-decoration: none;
+            color: #fff;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="site-title">Chess Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Chats</a></li>
+                <li><a href="#">All Posts</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'users:profile' user.id %}">Profile</a></li>
+                <li><a href="{% url 'users:login' %}" class="login-button">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'users:login' %}" class="login-button">Login</a></li>
+                <li><a href="{% url 'users:registration' %}" class="registration-button">Registration</a></li>
+            {% endif %}
+    </header>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        &copy; 2023 Chess Forum.
+    </footer>
+</body>
+</html>
