@@ -1,0 +1,99 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+<style>
+    h1 {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    .profile-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .profile-info {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-avatar {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-avatar img {
+        max-width: 150px;
+        max-height: 150px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+    }
+
+    .profile-posts {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .post {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .clear {
+        clear: both;
+    }
+</style>
+<h1>Edit Profile - {{ user.username }}</h1>
+<div class="profile-container">
+    <div class="profile-info left">
+        <div class="profile-avatar">
+            <img 
+            src="{% if user.photo %} {{ user.photo.url }} {% endif %} " 
+            alt="User Avatar">
+        </div>
+        <p><strong>Nickname:</strong> {{ user.username }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        {% if user.telegram_id %}
+            <p><strong>Telegram ID:</strong> {{ user.telegram_id }}</p>
+        {% endif %}
+
+        {% if user.chess_profile_url %}
+            <p><strong>Chess Profile:</strong> <a href="{{ user.chess_profile_url }}" target="_blank">{{ user.chess_profile_url }}</a></p>
+        {% endif %}
+
+        {% if user.subscriber %}
+            <p><strong>Subscriber:</strong> Yes</p>
+        {% endif %}
+    </div>
+
+    <div class="profile-info left">
+        <h2>Edit Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+
+    <div class="clear"></div>
+</div>
+{% endblock %}
