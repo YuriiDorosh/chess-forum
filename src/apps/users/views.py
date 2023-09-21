@@ -11,7 +11,7 @@ from users.models import User
 class UserLoginView(LoginView):
     template_name = "users/login.html"
     form_class = LoginForm
-    
+
     def get_success_url(self):
         user = self.request.user
         return reverse_lazy("users:profile", kwargs={"pk": user.id})
@@ -22,14 +22,15 @@ class UserRegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
-    
+
+
 class UserProfileView(UpdateView):
     model = User
     form_class = UserProfileForm
-    template_name = 'users/profile.html'
+    template_name = "users/profile.html"
 
     def get_success_url(self):
-        return reverse_lazy('users:profile', args=(self.object.id,))
+        return reverse_lazy("users:profile", args=(self.object.id,))
 
 
 def user_logout(request):
