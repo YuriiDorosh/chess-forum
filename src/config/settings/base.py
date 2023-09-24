@@ -30,7 +30,8 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY = []
+THIRD_PARTY = [
+]
 
 LOCAL_APPS = [
     "users",
@@ -56,7 +57,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'core', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,3 +131,4 @@ AUTHENTICATION_BACKENDS = [
 
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "/users/profile/"
+
