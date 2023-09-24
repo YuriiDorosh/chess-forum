@@ -44,6 +44,14 @@
             cursor: pointer;
         }
 
+        .button {
+            text-decoration: none;
+            color: #fff;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
         html, body {
             height: 100%;
             margin: 0;
@@ -69,7 +77,9 @@
         <nav>
             <ul>
                 <li><a href="#">Chats</a></li>
-                <li><a href="#">All Posts</a></li>
+
+                <li><a href="{% url 'posts:all_user_posts' %}" class="button">All Posts</a></li>
+
             {% if user.is_authenticated %}
                 <li><a href="{% url 'users:profile' user.id %}">Profile</a></li>
                 <li><a href="{% url 'users:login' %}" class="login-button">Logout</a></li>
