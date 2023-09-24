@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Create a New Post</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Post</button>
+  </form>
+  <a href="{% url 'posts:all_user_posts' %}">Back to Posts</a>
+{% endblock %}
