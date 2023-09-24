@@ -31,6 +31,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY = [
+    "core",
 ]
 
 LOCAL_APPS = [
