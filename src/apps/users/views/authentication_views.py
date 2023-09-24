@@ -23,7 +23,7 @@ class UserRegistrationView(CreateView):
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
 
-    
+
 def user_logout(request):
     logout(request)
     return redirect("login")
