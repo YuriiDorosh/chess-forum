@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>All User Posts</h1>
+  <ul>
+    {% for post in posts %}
+      <li>
+        <a href="{% url 'users:profile' post.user.id %}">
+            {{ post.user.username }}
+        </a> | Post: {{ post.title }} 
+        <br></br>
+        {% if post.game_link %}
+            <p><strong>Game Link:</strong> <a href="{{ post.game_link }}">{{ post.game_link }}</a></p>
+        {% endif %}
+
+        {{ post.body }}
+        <br></br>
+        <p><strong>Added :</strong>{{ post.date_added }} </p>
+        <br></br>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
