@@ -21,4 +21,4 @@ class UserPost(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f"User: {self.user} | Post: {self.title}"
+        return f"User: {self.user} | Post: {self.title} | ID : {self.id}"
