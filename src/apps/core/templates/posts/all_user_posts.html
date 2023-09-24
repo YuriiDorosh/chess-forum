@@ -1,23 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>All User Posts</h1>
-  <ul>
+<style>
+    .post {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<h1>All User Posts</h1>
+<ul>
     {% for post in posts %}
-      <li>
+    <li class="post">
         <a href="{% url 'users:profile' post.user.id %}">
             {{ post.user.username }}
-        </a> | Post: {{ post.title }} 
+        </a> | Post name: {{ post.title }} 
         <br></br>
         {% if post.game_link %}
-            <p><strong>Game Link:</strong> <a href="{{ post.game_link }}">{{ post.game_link }}</a></p>
+        <p><strong>Game Link:</strong> <a href="{{ post.game_link }}">{{ post.game_link }}</a></p>
         {% endif %}
 
         {{ post.body }}
         <br></br>
         <p><strong>Added :</strong>{{ post.date_added }} </p>
         <br></br>
-      </li>
+    </li>
     {% endfor %}
-  </ul>
+</ul>
 {% endblock %}
