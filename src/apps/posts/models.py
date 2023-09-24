@@ -19,7 +19,6 @@ class UserPost(models.Model):
     game_link = models.URLField(max_length=60, blank=True, null=True)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
-    
-    
+
     def __str__(self) -> str:
         return f"User: {self.user} | Post: {self.title}"
