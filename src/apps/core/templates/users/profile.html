@@ -89,11 +89,15 @@
             <div class="profile-info left">
                 <a href="{% url 'users:profile_edit' user.id %}" class="btn btn-primary">Edit Profile</a>
             </div>
+            <div class="profile-info left">
+                <a href="{% url 'posts:create_post' %}" class="btn btn-primary">Create Post</a>
+            </div>
         {% endif %}
     
 
 
         <div class="profile-posts right">
+            <h1>Posts:</h1>
             {% for post in user_posts %}
             <div class="post">
                 <h3>{{ post.title }}</h3>
@@ -102,6 +106,11 @@
                 {% endif %}
                 <p><strong>Body:</strong> {{ post.body }}</p>
                 <p><strong>Date:</strong> {{ post.date_added }}</p>
+
+                {% if user == request.user %}
+                    <a href="{% url 'posts:edit_post' post.id %}" class="btn btn-primary">Edit</a>
+                {% endif %}
+
             </div>
             {% endfor %}
         </div>
