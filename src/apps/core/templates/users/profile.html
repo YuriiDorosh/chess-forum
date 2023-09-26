@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load custom_filters %}
 {% block content %}
 <style>
     h1 {
@@ -107,6 +107,21 @@
                 <p><strong>Body:</strong> {{ post.body }}</p>
                 <p><strong>Date:</strong> {{ post.date_added }}</p>
 
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'posts:like_post' post.id %}">
+                    {% csrf_token %}
+                        <button type="submit">
+                        {% if post|has_liked_post:user %}
+                            Unlike
+                        {% else %}
+                            Like
+                        {% endif %}
+                        </button>
+                    </form>
+                {% endif %}
+
+                <p><strong>Likes:</strong> {{ post.likes.count }}</p>
+      
                 {% if user == request.user %}
                     <a href="{% url 'posts:edit_post' post.id %}" class="btn btn-primary">Edit</a>
                 {% endif %}
