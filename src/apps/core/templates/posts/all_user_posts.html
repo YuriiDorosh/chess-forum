@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load custom_filters %}
 
 {% block content %}
 <style>
@@ -12,6 +13,12 @@
 </style>
 
 <h1>All User Posts</h1>
+
+<div>
+    <a href="?sort=newest">Newest</a> |
+    <a href="?sort=most_likes">Most Likes</a>
+</div>
+
 <ul>
     {% for post in posts %}
     <li class="post">
@@ -27,6 +34,20 @@
         <br></br>
         <p><strong>Added :</strong>{{ post.date_added }} </p>
         <br></br>
+
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'posts:like_post' post.id %}">
+          {% csrf_token %}
+          <button type="submit">
+            {% if post|has_liked_post:user %}
+              Unlike
+            {% else %}
+              Like
+            {% endif %}
+          </button>
+        </form>
+      {% endif %}
+      <p><strong>Likes:</strong> {{ post.likes_count }}</p>
     </li>
     {% endfor %}
 </ul>
