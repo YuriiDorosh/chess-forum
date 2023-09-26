@@ -19,11 +19,12 @@ class UserPost(models.Model):
     title = models.CharField(max_length=100)
     game_link = models.URLField(max_length=60, blank=True, null=True)
     body = models.TextField()
-    likes = models.ManyToManyField(User, through='Like', related_name='liked_posts')
+    likes = models.ManyToManyField(User, through="Like", related_name="liked_posts")
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"User: {self.user} | Post: {self.title} | ID : {self.id}"
+
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -31,7 +32,7 @@ class Like(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ['user', 'post']
-        
+        unique_together = ["user", "post"]
+
     def __str__(self) -> str:
         return f"Who liked: {self.user} | Post Creator: {self.post.user} | Post: {self.post.title}"

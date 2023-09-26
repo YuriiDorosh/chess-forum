@@ -13,8 +13,10 @@ class UserAdmin(admin.ModelAdmin):
 class UserPostAdmin(admin.ModelAdmin):
     pass
 
+
 class LikeAdmin(admin.ModelAdmin):
     pass
+
 
 class RoomAdmin(admin.ModelAdmin):
     pass

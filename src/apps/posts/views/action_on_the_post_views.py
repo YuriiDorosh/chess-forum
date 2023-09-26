@@ -10,7 +10,7 @@ class CreateUserPostView(View):
 
     def get(self, request):
         form = UserPostCreateForm()
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {"form": form})
 
     def post(self, request):
         form = UserPostCreateForm(request.POST)
@@ -18,8 +18,7 @@ class CreateUserPostView(View):
             new_post = form.save(commit=False)
             new_post.user = request.user
             new_post.save()
-            return redirect("posts:all_user_posts")  
-
+            return redirect("posts:all_user_posts")
 
 
 class EditUserPostView(View):
@@ -27,12 +26,12 @@ class EditUserPostView(View):
 
     def get(self, request, post_id):
         post = get_object_or_404(UserPost, id=post_id)
-        
+
         if post.user != request.user:
             raise Http404("Post not found or you don't have permission to edit it")
 
         form = UserPostUpdateForm(instance=post)
-        return render(request, self.template_name, {'form': form, 'post': post})
+        return render(request, self.template_name, {"form": form, "post": post})
 
     def post(self, request, post_id):
         post = get_object_or_404(UserPost, id=post_id)
@@ -43,4 +42,4 @@ class EditUserPostView(View):
         form = UserPostUpdateForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
-            return redirect("posts:all_user_posts")  
+            return redirect("posts:all_user_posts")
