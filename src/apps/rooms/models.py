@@ -15,3 +15,6 @@ class Room(models.Model):
     name = models.CharField(max_length=30, unique=True)
     slug = models.SlugField(unique=True)
     premium = models.BooleanField(default=False)
+    
+    def __str__(self) -> str:
+        return f"Room: {self.name}"
