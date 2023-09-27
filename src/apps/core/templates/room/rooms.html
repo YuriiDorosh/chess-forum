@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+  <h1>Rooms</h1>
+
+  <ul>
+
+    {% for room in rooms %}
+      <li>
+          <h2>Room: {{ room.name }}</h2>
+
+            <a href="{% url 'rooms:room' room.slug %}">Join</a>
+
+      </li>
+
+    {% endfor %}
+  </ul>
+
+{% endblock %}
