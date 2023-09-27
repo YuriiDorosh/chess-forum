@@ -76,8 +76,9 @@
         <h1 class="site-title">Chess Forum</h1>
         <nav>
             <ul>
-                <li><a href="#">Chats</a></li>
-
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'rooms:rooms' %}">Chats</a></li>
+            {% endif %}
                 <li><a href="{% url 'posts:all_user_posts' %}" class="button">All Posts</a></li>
 
             {% if user.is_authenticated %}
@@ -91,8 +92,13 @@
     <div>
         {% block content %}{% endblock %}
     </div>
+
+    {% block scripts %}
+        {% endblock %}
+
     <footer>
         &copy; 2023 Chess Forum.
     </footer>
+
 </body>
 </html>
