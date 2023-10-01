@@ -2,8 +2,9 @@ from django.db import models
 from users.models import User
 from rooms.models import Room
 
+from core.models import BaseModel
 
-class Message(models.Model):
+class Message(BaseModel):
     """
     A model representing messages posted within chat rooms.
 
@@ -17,10 +18,7 @@ class Message(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    date_added = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        ordering = ('-date_added',)
+
         
     def __str__(self) -> str:
         return f"User: {self.user} | {self.room} | Message: {self.content}"
