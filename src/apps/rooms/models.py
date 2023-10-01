@@ -1,7 +1,8 @@
 from django.db import models
 
+from core.models import BaseModel
 
-class Room(models.Model):
+class Room(BaseModel):
     """
     Model representing a chat room.
 
