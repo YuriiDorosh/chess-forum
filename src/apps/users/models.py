@@ -2,7 +2,7 @@ import uuid
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+from users.validators import validate_chess_profile_url
 
 class User(AbstractUser):
     """
@@ -22,5 +22,5 @@ class User(AbstractUser):
     bio = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to="user_photos/", blank=True, null=True)
     telegram_id = models.CharField(max_length=30, blank=True, null=True)
-    chess_profile_url = models.URLField(max_length=60, blank=True, null=True)
+    chess_profile_url = models.URLField(max_length=60, blank=True, null=True, validators=[validate_chess_profile_url])
     subscriber = models.BooleanField(default=False)
