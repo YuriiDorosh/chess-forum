@@ -2,23 +2,26 @@
 {% load custom_filters %}
 {% block content %}
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
     h1 {
         text-align: center;
-        font-family: Arial, sans-serif;
         color: #333;
+        margin: 20px 0;
     }
 
     .profile-container {
         max-width: 800px;
         margin: 0 auto;
-        padding: 20px;
-    }
-
-    .profile-info {
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 5px;
+        background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
     }
 
     .profile-avatar {
@@ -29,15 +32,50 @@
     .profile-avatar img {
         max-width: 150px;
         max-height: 150px;
-        border: 1px solid #ccc;
+        border: 3px solid #ccc;
         border-radius: 50%;
     }
 
-    .profile-posts {
-        background-color: #fff;
+    .profile-info p {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .profile-info strong {
+        font-weight: bold;
+    }
+
+    .profile-info a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .profile-info a:hover {
+        text-decoration: underline;
+    }
+
+    .profile-info .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
         border-radius: 5px;
+        margin-right: 10px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .profile-info .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .profile-posts {
+        background-color: #f9f9f9;
+        border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         padding: 20px;
+        margin-top: 20px;
     }
 
     .post {
@@ -59,6 +97,7 @@
         clear: both;
     }
 </style>
+
     <h1>Chess Forum - {{ user.username }} Profile</h1>
     <div class="profile-container">
         <div class="profile-info left">
@@ -128,7 +167,19 @@
 
             </div>
             {% endfor %}
+            <div class="profile-posts left">
+                <h3>Liked Posts:</h3>
+                {% for post in liked_posts %}
+                <div class="post">
+                    <h4>Title: {{ post.title }}</h4>
+                    <p><a href="{% url 'users:profile' post.user.id %}">Profile of {{ post.user.username }}</a></p>
+                </div>
+                {% endfor %}
+            </div>
+
+
         </div>
+        
         <div class="clear"></div>
     </div>
 {% endblock %}
