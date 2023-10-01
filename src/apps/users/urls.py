@@ -7,7 +7,7 @@ app_name = "users"
 urlpatterns = [
     path("registration/", authentication_views.UserRegistrationView.as_view(), name="registration"),
     path("login/", authentication_views.UserLoginView.as_view(), name="login"),
-    path("profile/<int:pk>", login_required(profile_views.UserProfileView.as_view()), name="profile"),
-    path("profile/edit/<int:pk>/", login_required(profile_views.UserProfileEditView.as_view()), name="profile_edit"),
+    path("profile/<uuid:pk>", login_required(profile_views.UserProfileView.as_view()), name="profile"),
+    path("profile/edit/<uuid:pk>/", login_required(profile_views.UserProfileEditView.as_view()), name="profile_edit"),
     path("logout/", authentication_views.user_logout, name="logout"),
 ]
