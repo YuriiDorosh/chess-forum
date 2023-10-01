@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -15,6 +17,7 @@ class User(AbstractUser):
     - subscriber: Whether the user is a subscriber (default is False).
     """
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     username = models.CharField(max_length=30, unique=True)
     bio = models.TextField(blank=True, null=True)
     photo = models.ImageField(upload_to="user_photos/", blank=True, null=True)
