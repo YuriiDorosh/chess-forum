@@ -1,8 +1,9 @@
 from django.db import models
 from users.models import User
 
+from core.models import BaseModel
 
-class UserPost(models.Model):
+class UserPost(BaseModel):
     """
     A model representing user posts on the posts page and profile.
 
@@ -20,16 +21,14 @@ class UserPost(models.Model):
     game_link = models.URLField(max_length=60, blank=True, null=True)
     body = models.TextField()
     likes = models.ManyToManyField(User, through="Like", related_name="liked_posts")
-    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return f"User: {self.user} | Post: {self.title} | ID : {self.id}"
 
 
-class Like(models.Model):
+class Like(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(UserPost, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ["user", "post"]
