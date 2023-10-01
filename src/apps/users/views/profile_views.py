@@ -20,7 +20,9 @@ class UserProfileView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_posts = UserPost.objects.filter(user=self.object)
+        liked_posts = UserPost.objects.filter(likes__in=[self.object])
         context["user_posts"] = user_posts
+        context["liked_posts"] = liked_posts  
         return context
 
 
