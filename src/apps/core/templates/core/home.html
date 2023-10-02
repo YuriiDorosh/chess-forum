@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin: 20px 0;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+  <h1>Welcome to Chess Forum</h1>
+  
+  <h2>Top Posts:</h2>
+  <ul>
+    {% for post in top_posts %}
+      <li><a href="{% url 'users:profile' post.user.id %}">{{ post.title }} (Likes: {{ post.like_count }})</a></li>
+    {% empty %}
+      <li>No top posts available.</li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Open Discussions:</h2>
+  <ul>
+    {% for discussion in open_discussions %}
+      <li><a href="{% url 'discussions:discussion_detail' discussion.id %}">{{ discussion.title }}</a></li>
+    {% empty %}
+      <li>No open discussions available.</li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}
