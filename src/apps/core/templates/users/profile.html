@@ -145,6 +145,7 @@
                 {% endif %}
                 <p><strong>Body:</strong> {{ post.body }}</p>
                 <p><strong>Date:</strong> {{ post.date_added }}</p>
+            
 
                 {% if user.is_authenticated %}
                     <form method="post" action="{% url 'posts:like_post' post.id %}">
@@ -175,6 +176,14 @@
                     <p><a href="{% url 'users:profile' post.user.id %}">Profile of {{ post.user.username }}</a></p>
                 </div>
                 {% endfor %}
+            </div>
+            <div class="profile-posts left">
+                <h3>Discussions:</h3>
+                <ul>
+                    {% for discussion in user_discussions %}
+                    <li><a href="{% url 'discussions:discussion_detail' discussion.id %}">{{ discussion.title }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
 
 
