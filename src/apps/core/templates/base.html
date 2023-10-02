@@ -76,6 +76,7 @@
         <h1 class="site-title">Chess Forum</h1>
         <nav>
             <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'rooms:rooms' %}">Chats</a></li>
             {% endif %}
