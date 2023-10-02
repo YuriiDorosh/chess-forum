@@ -10,6 +10,7 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("posts/", include("posts.urls")),
     path("rooms/", include("rooms.urls")),
+    path("discussions/", include("discussions.urls")),
 ]
 
 if settings.DEBUG:
