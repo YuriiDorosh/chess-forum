@@ -80,6 +80,7 @@
                 <li><a href="{% url 'rooms:rooms' %}">Chats</a></li>
             {% endif %}
                 <li><a href="{% url 'posts:all_user_posts' %}" class="button">All Posts</a></li>
+                <li><a href="{% url 'discussions:discussion_list' %}" class="button">Discussions</a></li>
 
             {% if user.is_authenticated %}
                 <li><a href="{% url 'users:profile' user.id %}">Profile</a></li>
