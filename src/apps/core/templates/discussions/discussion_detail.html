@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <h1>Discussion title: {{ discussion.title }}</h1>
+  Discussion author:
+  <a href="{% url 'users:profile' discussion.author.id %}">
+     {{ discussion.author }}
+  </a>
+  <p>Discussion text:{{ discussion.text }}</p>
+  {% if discussion.image %}
+    <img src="{{ discussion.image.url }}" alt="{{ discussion.title }}" />
+  {% endif %}
+
+  {% if user.is_authenticated %}
+  {% if user == discussion.author and not discussion.closed %}
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" name="close_discussion">Close discussion</button>
+    </form>
+  {% endif %}
+{% endif %}
+
+  {% if user.is_authenticated %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Create Reply</h2>
+    {{ reply_form.as_p }}
+    <button type="submit">Submit Reply</button>
+  </form>
+  {% endif %}
+  
+
+
+
+  <h2>Replies</h2>
+  <ul>
+    {% for reply in replies %}
+    <li>
+      <a href="{% url 'users:profile' reply.author.id %}">
+      {{ reply.author }}
+      </a>
+      <br>
+      {{ reply.text }}
+      <br>
+      {% if reply.image %}
+      image:
+      <br>
+        <img src="{{ reply.image.url }}" alt="{{ reply.title }}" />
+      {% endif %}
+      <br>
+      <span>Like Count: {{ reply.like_count }}</span>
+      <form method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+        <button type="submit" name="like_reply" value="{{ reply.id }}">Like</button>
+        {% endif %}
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'discussions:discussion_list' %}">Back to Discussion List</a>
+</div>
+{% endblock %}
