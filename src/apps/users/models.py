@@ -2,7 +2,7 @@ import uuid
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from users.validators import validate_chess_profile_url
+from apps.core.validators import validate_chess_profile_url
 
 class User(AbstractUser):
     """
