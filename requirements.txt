@@ -1,4 +1,5 @@
 Django
+django-versatileimagefield
 channels==3.0.5
 Pillow
 python-dotenv
