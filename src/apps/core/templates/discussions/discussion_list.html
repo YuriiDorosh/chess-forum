@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Discussion List</h1>
+  <ul>
+    {% for discussion in discussions %}
+      <li>
+        <a href="{% url 'discussions:discussion_detail' discussion.id %}">{{ discussion.title }}</a>
+        {% if discussion.closed %}
+          <span style="color: red;">(Closed)</span>
+        {% else %}
+        <span style="color: green;">(Active)</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  {% if user.is_authenticated %}
+    <a href="{% url 'discussions:create_discussion' %}">Create Discussion</a>
+  {% endif %}
+  <a href="{% url 'discussions:closed_discussions' %}">Closed Discussions</a>
+{% endblock %}
