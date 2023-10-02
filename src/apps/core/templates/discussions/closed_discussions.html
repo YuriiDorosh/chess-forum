@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Closed Discussions</h1>
+  <ul>
+    {% for discussion in closed_discussions %}
+      <li>
+        <a href="{% url 'discussions:discussion_detail' discussion.id %}">{{ discussion.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'discussions:discussion_list' %}">Back to Discussion List</a>
+{% endblock %}
