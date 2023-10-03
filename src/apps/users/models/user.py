@@ -10,6 +10,7 @@ class User(AbstractUser):
     Custom User model that overrides the default Django User model.
 
     Fields:
+    - id: User`s id(format: UUID, unique field).
     - username: User`s name (unique field).
     - bio: User's biography (optional field).
     - photo: User's photo (stored in the 'user_photos/' folder) (optional field).
