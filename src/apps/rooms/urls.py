@@ -1,6 +1,5 @@
 from django.urls import path
-
-from rooms.views import rooms, room
+from rooms.views import room, rooms
 
 app_name = "rooms"
 

@@ -1,8 +1,7 @@
-from django.db import models
-
-from users.models.user import User
 from core.models import BaseModel
 from core.validators import validate_chess_game_url
+from django.db import models
+from users.models.user import User
 
 
 class UserPost(BaseModel):

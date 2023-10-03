@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View
-from posts.models import UserPost
-from posts.models import Like
+from posts.models import Like, UserPost
 
 
 class LikePostView(View):

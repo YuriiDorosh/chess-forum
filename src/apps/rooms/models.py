@@ -1,6 +1,5 @@
-from django.db import models
-
 from core.models import BaseModel
+from django.db import models
 
 
 class Room(BaseModel):

@@ -1,8 +1,7 @@
-from django.db import models
-from versatileimagefield.fields import VersatileImageField
-
-from users.models.user import User
 from core.models import BaseModel
+from django.db import models
+from users.models.user import User
+from versatileimagefield.fields import VersatileImageField
 
 
 class Discussion(BaseModel):

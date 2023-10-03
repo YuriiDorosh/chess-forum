@@ -1,9 +1,8 @@
-from django.shortcuts import render, redirect
+from discussions.forms import DiscussionForm, ReplyForm
+from discussions.models import Discussion, Reply, ReplyLike
 from django.db.models import Count
 from django.http import Http404
-
-from discussions.models import Discussion, Reply, ReplyLike
-from discussions.forms import DiscussionForm, ReplyForm
+from django.shortcuts import redirect, render
 
 
 def discussion_list(request):

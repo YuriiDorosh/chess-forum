@@ -1,5 +1,5 @@
 from django.test import TestCase
-from users.forms import RegistrationForm, LoginForm
+from users.forms import LoginForm, RegistrationForm
 
 from apps.users.models.user import User
 

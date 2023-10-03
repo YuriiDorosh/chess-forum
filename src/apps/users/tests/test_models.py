@@ -1,6 +1,7 @@
-from django.test import TestCase
-from apps.users.models.user import User
 from django.db import IntegrityError
+from django.test import TestCase
+
+from apps.users.models.user import User
 
 
 class UserModelTestCase(TestCase):

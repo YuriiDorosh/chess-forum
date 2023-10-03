@@ -1,7 +1,6 @@
 import uuid
 
 from django.db import models
-
 from versatileimagefield.fields import VersatileImageField
 
 

@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.db.models import Count
-from posts.models import UserPost
 from discussions.models import Discussion
+from django.db.models import Count
+from django.shortcuts import render
+from posts.models import UserPost
 
 
 def home(request):

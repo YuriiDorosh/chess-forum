@@ -1,12 +1,10 @@
 import json
 
-from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
-
-
-from users.models.user import User
-from rooms.models import Room
+from channels.generic.websocket import AsyncWebsocketConsumer
 from room_messages.models import Message
+from rooms.models import Room
+from users.models.user import User
 
 
 class ChatConsumer(AsyncWebsocketConsumer):

@@ -1,10 +1,9 @@
-from django.contrib import admin
-
-from users.models.user import User
-from posts.models import UserPost, Like
-from rooms.models import Room
-from room_messages.models import Message
 from discussions.models import Discussion, Reply, ReplyLike
+from django.contrib import admin
+from posts.models import Like, UserPost
+from room_messages.models import Message
+from rooms.models import Room
+from users.models.user import User
 
 
 class UserAdmin(admin.ModelAdmin):

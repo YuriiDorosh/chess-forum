@@ -1,8 +1,9 @@
-from django.test import TestCase
 from datetime import datetime
-from users.models.user import User
-from rooms.models import Room
+
+from django.test import TestCase
 from room_messages.models import Message
+from rooms.models import Room
+from users.models.user import User
 
 
 class MessageModelTestCase(TestCase):

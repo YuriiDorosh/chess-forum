@@ -1,7 +1,8 @@
-from django.test import TestCase
-from users.models.user import User
-from posts.models import UserPost
 from datetime import datetime
+
+from django.test import TestCase
+from posts.models import UserPost
+from users.models.user import User
 
 
 class UserPostModelTestCase(TestCase):

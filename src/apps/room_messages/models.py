@@ -1,8 +1,7 @@
-from django.db import models
-from users.models.user import User
-from rooms.models import Room
-
 from core.models import BaseModel
+from django.db import models
+from rooms.models import Room
+from users.models.user import User
 
 
 class Message(BaseModel):

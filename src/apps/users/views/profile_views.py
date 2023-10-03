@@ -1,12 +1,11 @@
+from discussions.models import Discussion
+from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
-from django.shortcuts import get_object_or_404
-from django.http import Http404
-
+from posts.models import UserPost
 from users.forms.profile_forms import UserProfileForm
 from users.models.user import User
-from posts.models import UserPost
-from discussions.models import Discussion
 
 
 class UserProfileView(UpdateView):
