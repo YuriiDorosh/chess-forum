@@ -1,4 +1,4 @@
-from discussions.models import Discussion
+from discussions.models.discussion import Discussion
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
