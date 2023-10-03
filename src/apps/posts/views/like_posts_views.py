@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views import View
 from posts.models.post import UserPost
 from posts.models.post_likes import Like
+from posts.services.like_post_service import LikeService
 
 class LikePostView(View):
     """
@@ -26,11 +27,9 @@ class LikePostView(View):
             HttpResponseRedirect: Redirects to the previous page after the action.
         """
         post = get_object_or_404(UserPost, id=post_id)
-        like, created = Like.objects.get_or_create(user=request.user, post=post)
+        created = LikeService.toggle_like(request.user, post_id)
 
         previous_page = request.META.get("HTTP_REFERER", None)
 
-        if not created:
-            like.delete()
 
         return redirect(previous_page or "posts:all_user_posts")

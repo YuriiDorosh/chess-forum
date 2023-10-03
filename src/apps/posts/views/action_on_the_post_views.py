@@ -3,6 +3,7 @@ from django.shortcuts import Http404, get_object_or_404, redirect, render
 from django.views import View
 from posts.forms import UserPostCreateForm, UserPostUpdateForm
 from posts.models.post import UserPost
+from posts.services.user_post_service import UserPostService
 
 class CreateUserPostView(View):
     """
@@ -21,7 +22,6 @@ class CreateUserPostView(View):
 
     template_name = "posts/create_post.html"
 
-    @login_required
     def get(self, request):
         """
         Displays the form for creating a new user post.
@@ -35,7 +35,6 @@ class CreateUserPostView(View):
         form = UserPostCreateForm()
         return render(request, self.template_name, {"form": form})
 
-    @login_required
     def post(self, request):
         """
         Handles the submitted form for creating a new user post.
@@ -49,9 +48,7 @@ class CreateUserPostView(View):
         """
         form = UserPostCreateForm(request.POST)
         if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.user = request.user
-            new_post.save()
+            UserPostService.create_user_post(request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")
 
 class EditUserPostView(View):
@@ -111,5 +108,5 @@ class EditUserPostView(View):
 
         form = UserPostUpdateForm(request.POST, instance=post)
         if form.is_valid():
-            form.save()
+            UserPostService.edit_user_post(post_id, request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")
