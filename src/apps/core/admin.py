@@ -1,4 +1,6 @@
-from discussions.models import Discussion, Reply, ReplyLike
+from discussions.models.discussion import Discussion
+from discussions.models.reply import Reply
+from discussions.models.reply_like import ReplyLike
 from django.contrib import admin
 from posts.models.post import UserPost
 from posts.models.post_likes import Like
