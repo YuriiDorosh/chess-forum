@@ -1,5 +1,6 @@
 from discussions.models.discussion import Discussion
 
+
 class DiscussionService:
     @staticmethod
     def get_all_discussions():

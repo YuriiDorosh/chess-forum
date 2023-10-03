@@ -1,8 +1,7 @@
-from django.shortcuts import redirect, render
-from django.views import View
-
 from discussions.forms.discussion_forms import DiscussionForm
 from discussions.services.discussion_service import DiscussionService
+from django.shortcuts import redirect, render
+from django.views import View
 
 
 class CreateDiscussionView(View):
@@ -15,6 +14,7 @@ class CreateDiscussionView(View):
     POST request:
     Processes the form data, creates a discussion, and redirects to the discussion list if the form is valid.
     """
+
     def get(self, request):
         form = DiscussionForm()
         return render(request, "discussions/create_discussion.html", {"form": form})
@@ -46,6 +46,7 @@ class ClosedDiscussionsView(View):
     GET request:
     Retrieves and renders a list of closed discussions.
     """
+
     def get(self, request):
         closed_discussions = DiscussionService.get_closed_discussions()
         return render(request, "discussions/closed_discussions.html", {"closed_discussions": closed_discussions})

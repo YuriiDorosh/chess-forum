@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from posts.models.post import UserPost
 from posts.models.post_likes import Like
 
+
 class LikeService:
     @staticmethod
     def toggle_like(user, post_id):

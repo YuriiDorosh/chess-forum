@@ -5,6 +5,7 @@ from posts.forms.post_forms import UserPostCreateForm, UserPostUpdateForm
 from posts.models.post import UserPost
 from posts.services.user_post_service import UserPostService
 
+
 class CreateUserPostView(View):
     """
     View for creating a new user post.
@@ -50,6 +51,7 @@ class CreateUserPostView(View):
         if form.is_valid():
             UserPostService.create_user_post(request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")
+
 
 class EditUserPostView(View):
     """

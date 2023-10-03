@@ -1,7 +1,8 @@
-from django.db import models
 from core.models import BaseModel
-from users.models.user import User
+from django.db import models
 from posts.models.post import UserPost
+from users.models.user import User
+
 
 class Like(BaseModel):
     """
@@ -12,7 +13,7 @@ class Like(BaseModel):
         post (ForeignKey): The post that was liked by the user.
         date_added (DateTimeField): The date and time when the post was created.
     """
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(UserPost, on_delete=models.CASCADE)
 

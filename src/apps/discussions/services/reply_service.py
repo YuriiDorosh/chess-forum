@@ -1,5 +1,6 @@
 from discussions.models.reply import Reply
 
+
 class ReplyService:
     @staticmethod
     def get_replies_for_discussion(discussion):

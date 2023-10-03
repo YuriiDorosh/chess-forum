@@ -1,7 +1,6 @@
-from django.urls import path
-
+from discussions.views.discussions_actions_views import ClosedDiscussionsView, CreateDiscussionView
 from discussions.views.discussions_detail_views import DiscussionDetailView, DiscussionListView
-from discussions.views.discussions_actions_views import CreateDiscussionView, ClosedDiscussionsView
+from django.urls import path
 
 app_name = "discussions"
 

@@ -1,8 +1,9 @@
 from core.models import BaseModel
+from discussions.models.discussion import Discussion
 from django.db import models
 from users.models.user import User
-from discussions.models.discussion import Discussion
 from versatileimagefield.fields import VersatileImageField
+
 
 class Reply(BaseModel):
     """

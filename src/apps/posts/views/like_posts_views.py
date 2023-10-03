@@ -4,6 +4,7 @@ from posts.models.post import UserPost
 from posts.models.post_likes import Like
 from posts.services.like_post_service import LikeService
 
+
 class LikePostView(View):
     """
     View for handling the liking/unliking of a user post.
@@ -30,6 +31,5 @@ class LikePostView(View):
         created = LikeService.toggle_like(request.user, post_id)
 
         previous_page = request.META.get("HTTP_REFERER", None)
-
 
         return redirect(previous_page or "posts:all_user_posts")

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from users.models.user import User
 
+
 class UserService:
     @staticmethod
     def get_user_by_id(user_id):

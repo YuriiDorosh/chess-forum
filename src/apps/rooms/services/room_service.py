@@ -1,5 +1,6 @@
 from rooms.models.room import Room
 
+
 class RoomService:
     @staticmethod
     def get_all_rooms():

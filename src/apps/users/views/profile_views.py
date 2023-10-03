@@ -7,6 +7,7 @@ from users.forms.profile_forms import UserProfileForm
 from users.models.user import User
 from users.services.user_service import UserService
 
+
 class UserProfileView(UpdateView):
     """
     View for displaying a user's profile.

@@ -1,7 +1,7 @@
 from core.models import BaseModel
+from discussions.models.reply import Reply
 from django.db import models
 from users.models.user import User
-from discussions.models.reply import Reply
 
 
 class ReplyLike(BaseModel):

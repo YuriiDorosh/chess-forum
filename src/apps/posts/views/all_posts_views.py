@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from posts.models.post import UserPost
 
+
 class AllUserPostsView(View):
     """
     View for displaying all user posts with sorting options.
