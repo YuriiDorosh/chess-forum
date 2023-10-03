@@ -1,9 +1,10 @@
 from django.urls import path
-from rooms.views import room, rooms
+from rooms.views.all_rooms_views import AllRoomsView
+from rooms.views.room_views import RoomView
 
 app_name = "rooms"
 
 urlpatterns = [
-    path("", rooms, name="rooms"),
-    path("<slug:slug>/", room, name="room"),
+    path("", AllRoomsView.as_view(), name="rooms"),
+    path("<slug:slug>/", RoomView.as_view(), name="room"),
 ]
