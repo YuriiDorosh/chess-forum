@@ -4,6 +4,7 @@ from users.models import User
 from core.models import BaseModel
 from core.validators import validate_chess_game_url
 
+
 class UserPost(BaseModel):
     """
     A model representing user posts on the posts page and profile.

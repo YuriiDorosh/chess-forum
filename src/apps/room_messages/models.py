@@ -4,6 +4,7 @@ from rooms.models import Room
 
 from core.models import BaseModel
 
+
 class Message(BaseModel):
     """
     A model representing messages posted within chat rooms.
@@ -19,6 +20,5 @@ class Message(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
 
-        
     def __str__(self) -> str:
         return f"User: {self.user} | {self.room} | Message: {self.content}"

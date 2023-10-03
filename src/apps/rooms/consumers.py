@@ -8,54 +8,41 @@ from users.models import User
 from rooms.models import Room
 from room_messages.models import Message
 
+
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'chat_%s' % self.room_name
+        self.room_name = self.scope["url_route"]["kwargs"]["room_name"]
+        self.room_group_name = "chat_%s" % self.room_name
 
-        await self.channel_layer.group_add(
-            self.room_group_name,
-            self.channel_name
-        )
+        await self.channel_layer.group_add(self.room_group_name, self.channel_name)
 
         await self.accept()
         print(f"WebSocket connected to room {self.room_name}")
 
     async def disconnect(self, close_code):
-        await self.channel_layer.group_discard(
-        self.room_group_name,
-        self.channel_name
-    )
+        await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     async def receive(self, text_data):
         data = json.loads(text_data)
         print(data)
-        message = data['message']
-        username = data['username']
-        room = data['room']
+        message = data["message"]
+        username = data["username"]
+        room = data["room"]
 
         await self.save_message(username, room, message)
 
         # Send message to room group
         await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chat_message',
-                'message': message,
-                'username': username
-            }
+            self.room_group_name, {"type": "chat_message", "message": message, "username": username}
         )
 
     # Receive message from room group
     async def chat_message(self, event):
-        message = event['message']
-        username = event['username']
+        message = event["message"]
+        username = event["username"]
 
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({
-            'message': message,
-            'username': username
-        }))
+        await self.send(text_data=json.dumps({"message": message, "username": username}))
 
     @sync_to_async
     def save_message(self, username, room, message):

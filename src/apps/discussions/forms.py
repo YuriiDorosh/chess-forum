@@ -1,15 +1,17 @@
 from django import forms
 from discussions.models import Discussion, Reply
 
+
 class DiscussionForm(forms.ModelForm):
     class Meta:
         model = Discussion
-        fields = ['title', 'text', 'image']  
+        fields = ["title", "text", "image"]
+
 
 # class ReplyForm(forms.ModelForm):
 #     class Meta:
 #         model = Reply
-#         fields = ['text', 'image']  
+#         fields = ['text', 'image']
 
 #     def clean(self):
 #         cleaned_data = super().clean()
@@ -18,16 +20,17 @@ class DiscussionForm(forms.ModelForm):
 #             raise forms.ValidationError("This discussion is closed.")
 #         return cleaned_data
 
+
 class ReplyForm(forms.ModelForm):
     discussion_id = forms.CharField(widget=forms.HiddenInput())  # Додали поле discussion_id
 
     class Meta:
         model = Reply
-        fields = ['text', 'image']
+        fields = ["text", "image"]
 
     def clean(self):
         cleaned_data = super().clean()
-        discussion_id = cleaned_data.get('discussion_id')  # Отримали discussion_id з очищених даних
+        discussion_id = cleaned_data.get("discussion_id")  # Отримали discussion_id з очищених даних
         try:
             discussion = Discussion.objects.get(pk=discussion_id)
             if discussion.closed:

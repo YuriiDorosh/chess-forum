@@ -6,7 +6,8 @@ from django.http import Http404
 from users.forms import UserProfileForm
 from users.models import User
 from posts.models import UserPost
-from discussions.models import Discussion 
+from discussions.models import Discussion
+
 
 class UserProfileView(UpdateView):
     model = User
@@ -23,7 +24,7 @@ class UserProfileView(UpdateView):
         liked_posts = UserPost.objects.filter(likes__in=[self.object])
         user_discussions = Discussion.objects.filter(author=self.object)
         context["user_posts"] = user_posts
-        context["liked_posts"] = liked_posts  
+        context["liked_posts"] = liked_posts
         context["user_discussions"] = user_discussions
         return context
 

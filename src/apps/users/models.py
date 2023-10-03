@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from apps.core.validators import validate_chess_profile_url
 
+
 class User(AbstractUser):
     """
     Custom User model that overrides the default Django User model.
