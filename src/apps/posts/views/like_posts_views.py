@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.views import View
-from posts.models import Like, UserPost
+from posts.models.post import UserPost
+from posts.models.post_likes import Like
 
 
 class LikePostView(View):
@@ -12,6 +13,5 @@ class LikePostView(View):
 
         if not created:
             like.delete()
-        # return redirect('posts:all_user_posts')
 
         return redirect(previous_page or "posts:all_user_posts")
