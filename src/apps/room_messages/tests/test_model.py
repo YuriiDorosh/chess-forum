@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from django.test import TestCase
-from room_messages.models import Message
+from room_messages.models.message import Message
 from rooms.models.room import Room
 from users.models.user import User
 

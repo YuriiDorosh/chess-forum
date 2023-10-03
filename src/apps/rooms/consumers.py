@@ -2,7 +2,7 @@ import json
 
 from asgiref.sync import sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-from room_messages.models import Message
+from room_messages.models.message import Message
 from rooms.models.room import Room
 from users.models.user import User
 
