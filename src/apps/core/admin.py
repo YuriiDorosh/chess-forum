@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from users.models import User
+from users.models.user import User
 from posts.models import UserPost, Like
 from rooms.models import Room
 from room_messages.models import Message

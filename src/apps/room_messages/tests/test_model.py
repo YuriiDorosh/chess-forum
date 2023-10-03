@@ -1,6 +1,6 @@
 from django.test import TestCase
 from datetime import datetime
-from users.models import User
+from users.models.user import User
 from rooms.models import Room
 from room_messages.models import Message
 

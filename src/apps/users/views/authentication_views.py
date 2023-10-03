@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 
 from users.forms import RegistrationForm, LoginForm
-from users.models import User
+from users.models.user import User
 
 
 class UserLoginView(LoginView):

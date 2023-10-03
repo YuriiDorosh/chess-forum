@@ -1,5 +1,5 @@
 from django.test import TestCase
-from users.models import User
+from users.models.user import User
 from posts.models import UserPost
 from datetime import datetime
 

@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import User
+from users.models.user import User
 from rooms.models import Room
 
 from core.models import BaseModel

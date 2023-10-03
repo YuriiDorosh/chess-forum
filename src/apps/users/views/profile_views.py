@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404
 
 from users.forms import UserProfileForm
-from users.models import User
+from users.models.user import User
 from posts.models import UserPost
 from discussions.models import Discussion
 

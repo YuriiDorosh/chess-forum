@@ -1,5 +1,5 @@
 from django.test import TestCase
-from users.models import User
+from apps.users.models.user import User
 from django.db import IntegrityError
 
 

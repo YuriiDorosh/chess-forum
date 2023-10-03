@@ -1,7 +1,7 @@
 from django.test import TestCase
 from users.forms import RegistrationForm, LoginForm
 
-from users.models import User
+from apps.users.models.user import User
 
 
 class RegistrationFormTest(TestCase):
