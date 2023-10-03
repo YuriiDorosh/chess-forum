@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import Http404, get_object_or_404, redirect, render
 from django.views import View
-from posts.forms import UserPostCreateForm, UserPostUpdateForm
+from posts.forms.post_forms import UserPostCreateForm, UserPostUpdateForm
 from posts.models.post import UserPost
 from posts.services.user_post_service import UserPostService
 
