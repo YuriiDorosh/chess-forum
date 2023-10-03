@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView
 from users.forms.authentication_forms import LoginForm, RegistrationForm
 from users.models.user import User
 
+
 class UserLoginView(LoginView):
     """
     View for user login.
@@ -20,6 +21,7 @@ class UserLoginView(LoginView):
     Template:
         users/login.html
     """
+
     template_name = "users/login.html"
     form_class = LoginForm
 
@@ -32,6 +34,7 @@ class UserLoginView(LoginView):
         """
         user = self.request.user
         return reverse_lazy("users:profile", kwargs={"pk": user.id})
+
 
 class UserRegistrationView(CreateView):
     """
@@ -46,10 +49,12 @@ class UserRegistrationView(CreateView):
     Template:
         users/register.html
     """
+
     model = User
     form_class = RegistrationForm
     template_name = "users/register.html"
     success_url = reverse_lazy("users:login")
+
 
 def user_logout(request):
     """

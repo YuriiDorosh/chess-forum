@@ -7,6 +7,7 @@ from posts.models import UserPost
 from users.forms.profile_forms import UserProfileForm
 from users.models.user import User
 
+
 class UserProfileView(UpdateView):
     """
     View for displaying a user's profile.
@@ -23,6 +24,7 @@ class UserProfileView(UpdateView):
     Template:
         users/profile.html
     """
+
     model = User
     form_class = UserProfileForm
     template_name = "users/profile.html"
@@ -64,6 +66,7 @@ class UserProfileView(UpdateView):
         context["user_discussions"] = user_discussions
         return context
 
+
 class UserProfileEditView(UpdateView):
     """
     View for editing a user's profile.
@@ -80,6 +83,7 @@ class UserProfileEditView(UpdateView):
     Template:
         users/profile_edit.html
     """
+
     model = User
     form_class = UserProfileForm
     template_name = "users/profile_edit.html"
