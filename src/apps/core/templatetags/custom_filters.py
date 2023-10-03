@@ -1,5 +1,5 @@
 from django import template
-from posts.models import Like
+from posts.models.post_likes import Like
 
 register = template.Library()
 

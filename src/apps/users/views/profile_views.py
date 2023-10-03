@@ -2,7 +2,7 @@ from discussions.models import Discussion
 from django.http import Http404
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
-from posts.models import UserPost
+from posts.models.post import UserPost
 from users.forms.profile_forms import UserProfileForm
 from users.models.user import User
 from users.services.user_service import UserService
