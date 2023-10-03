@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 
-from users.forms import RegistrationForm, LoginForm
+from users.forms.authentication_forms import RegistrationForm, LoginForm
 from users.models.user import User
 
 
