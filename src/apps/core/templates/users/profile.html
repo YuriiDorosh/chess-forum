@@ -106,10 +106,10 @@
                 src="{% if user.photo %} {{ user.photo.url }} {% endif %} " 
                 alt="User Avatar">
             </div>
+
             <p><strong>Nickname:</strong> {{ user.username }}</p>
             <p><strong>First Name:</strong> {{ user.first_name }}</p>
             <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-            <p><strong>Email:</strong> {{ user.email }}</p>
             
             {% if user.telegram_id %}
                 <p><strong>Telegram ID:</strong> {{ user.telegram_id }}</p>
@@ -122,6 +122,9 @@
             {% if user.subscriber %}
                 <p><strong>Subscriber:</strong> Yes</p>
             {% endif %}
+
+            <p><strong>Joined:</strong> {{ user.date_joined }}</p>
+            
         </div>
 
         {% if user == request.user %}
