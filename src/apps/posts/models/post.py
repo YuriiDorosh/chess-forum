@@ -25,14 +25,3 @@ class UserPost(BaseModel):
 
     def __str__(self) -> str:
         return f"User: {self.user} | Post: {self.title} | ID : {self.id}"
-
-
-class Like(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(UserPost, on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ["user", "post"]
-
-    def __str__(self) -> str:
-        return f"Who liked: {self.user} | Post Creator: {self.post.user} | Post: {self.post.title}"
