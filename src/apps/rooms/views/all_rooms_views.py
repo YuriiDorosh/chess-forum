@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.views import View
 from django.utils.decorators import method_decorator
-from rooms.services.room_service import RoomService  
+from django.views import View
+from rooms.services.room_service import RoomService
 
-@method_decorator(login_required, name='dispatch')
+
+@method_decorator(login_required, name="dispatch")
 class AllRoomsView(View):
     """
     View for displaying a list of all available rooms.
@@ -31,5 +32,5 @@ class AllRoomsView(View):
         Returns:
             HttpResponse: The rendered list of rooms.
         """
-        rooms = RoomService.get_all_rooms() 
+        rooms = RoomService.get_all_rooms()
         return render(request, "room/rooms.html", {"rooms": rooms})
