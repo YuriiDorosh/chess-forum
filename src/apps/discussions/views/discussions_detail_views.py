@@ -7,11 +7,26 @@ from discussions.services.reply_service import ReplyService
 from discussions.services.reply_like_service import ReplyLikeService
 
 class DiscussionListView(View):
+    """
+    View for displaying a list of discussions.
+
+    GET request:
+    Retrieves and renders a list of discussions.
+    """
     def get(self, request):
         discussions = DiscussionService.get_all_discussions()
         return render(request, "discussions/discussion_list.html", {"discussions": discussions})
 
 class DiscussionDetailView(View):
+    """
+    View for displaying details of a discussion.
+
+    GET request:
+    Retrieves and renders the details of a specific discussion and its replies.
+    
+    POST request:
+    Processes the form data to create a reply, toggle a reply like, or close the discussion (if authorized).
+    """
     def get(self, request, discussion_id):
         discussion = DiscussionService.get_discussion_by_id(discussion_id)
         replies = ReplyService.get_replies_for_discussion(discussion)
@@ -46,5 +61,3 @@ class DiscussionDetailView(View):
             "discussions/discussion_detail.html",
             {"discussion": discussion, "replies": replies, "reply_form": reply_form},
         )
-
-
