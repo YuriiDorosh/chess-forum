@@ -1,6 +1,6 @@
 from core.models import BaseModel
 from django.db import models
-from rooms.models import Room
+from rooms.models.room import Room
 from users.models.user import User
 
 

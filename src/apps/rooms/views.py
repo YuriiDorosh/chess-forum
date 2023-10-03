@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from room_messages.models import Message
-from rooms.models import Room
+from rooms.models.room import Room
 
 
 @login_required

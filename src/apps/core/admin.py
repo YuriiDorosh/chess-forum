@@ -2,7 +2,7 @@ from discussions.models import Discussion, Reply, ReplyLike
 from django.contrib import admin
 from posts.models import Like, UserPost
 from room_messages.models import Message
-from rooms.models import Room
+from rooms.models.room import Room
 from users.models.user import User
 
 

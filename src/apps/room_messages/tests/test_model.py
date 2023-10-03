@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.test import TestCase
 from room_messages.models import Message
-from rooms.models import Room
+from rooms.models.room import Room
 from users.models.user import User
 
 
