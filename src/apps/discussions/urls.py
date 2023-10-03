@@ -1,12 +1,13 @@
-from discussions import views
 from django.urls import path
+
+from discussions.views.discussions_detail_views import DiscussionDetailView, DiscussionListView
+from discussions.views.discussions_actions_views import CreateDiscussionView, ClosedDiscussionsView
 
 app_name = "discussions"
 
 urlpatterns = [
-    path("", views.discussion_list, name="discussion_list"),
-    # path('discussion/<uuid:discussion_id>/', views.discussion_detail, name='discussion_detail'),
-    path("<uuid:discussion_id>/", views.discussion_detail, name="discussion_detail"),
-    path("create/", views.create_discussion, name="create_discussion"),
-    path("closed/", views.closed_discussions, name="closed_discussions"),
+    path("", DiscussionListView.as_view(), name="discussion_list"),
+    path("<uuid:discussion_id>/", DiscussionDetailView.as_view(), name="discussion_detail"),
+    path("create/", CreateDiscussionView.as_view(), name="create_discussion"),
+    path("closed/", ClosedDiscussionsView.as_view(), name="closed_discussions"),
 ]
