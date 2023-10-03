@@ -1,12 +1,11 @@
 from discussions.models import Discussion
 from django.http import Http404
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView
 from posts.models import UserPost
 from users.forms.profile_forms import UserProfileForm
 from users.models.user import User
-
+from users.services.user_service import UserService
 
 class UserProfileView(UpdateView):
     """
@@ -40,7 +39,7 @@ class UserProfileView(UpdateView):
             User: The user object.
         """
         user_id = self.kwargs.get("pk")
-        return get_object_or_404(User, id=user_id)
+        return UserService.get_user_by_id(user_id)
 
     def get_context_data(self, **kwargs):
         """
@@ -114,5 +113,5 @@ class UserProfileEditView(UpdateView):
         """
         user_id = self.kwargs.get("pk")
         if self.request.user.is_authenticated and user_id == self.request.user.id:
-            return get_object_or_404(User, id=user_id)
+            return UserService.get_user_by_id(user_id)
         raise Http404("You are not authorized to edit this profile.")
