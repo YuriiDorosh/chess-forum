@@ -1,1 +1,1 @@
-![db](diagrams/db_architecture_image.png)
+![db](doc/diagrams/30.09.2023/db_architecture_image.png)
