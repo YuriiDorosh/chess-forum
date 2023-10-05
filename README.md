@@ -31,6 +31,7 @@ sudo docker-compose run --rm web sh -c "python manage.py createsuperuser"
 
 ![Python](https://img.shields.io/badge/Python-3.10.12-3776AB.svg?style=flat&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-4.2.5-092E20.svg?style=flat&logo=django&logoColor=white)
+![Django Channels](https://img.shields.io/badge/Django%20Channels-3.0.5-FFAC45.svg?style=flat&logo=django&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-24.0.6-2496ED.svg?style=flat&logo=docker&logoColor=white)
 ![Docker Compose](https://img.shields.io/badge/Docker%20Compose-1.29.2-2496ED.svg?style=flat&logo=docker&logoColor=white)
 ![Celery](https://img.shields.io/badge/Celery-5.3.4-4B8F00.svg?style=flat&logo=celery&logoColor=white)
