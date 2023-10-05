@@ -21,6 +21,8 @@ django_settings_module = "src.config.settings.dev"
 [tool.flake8]
 config = "flake8.cfg"
 
+[tool.black]
+config = "black.toml"
 
 
 
