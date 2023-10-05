@@ -1,25 +1,39 @@
-# .flake8
-#
-# AUTHOR
-#     krnd
-#
-# VERSION
-#     1.4
-#
-# SEE ALSO
-#     http://flake8.pycqa.org/en/latest/user/options.html
-#     http://flake8.pycqa.org/en/latest/user/error-codes.html
-#     https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes
-#     https://gist.github.com/krnd
-#
+[tool.isort]
+line_length = 120
+known_third_party = ["django", "celery", "redis"]
 
-[flake8]
+[tool.black]
+line-length = 120
+target-version = ['py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '''
+(
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | venv
+  | env
+  | my-venv
+  | my_venv
+  | my_env
+  | virtual_env
+  | v_env
+  | .env
+  | build
+  | dist
+)/
+)'''
+
+[tool.flake8]
 
 ################### PROGRAM ################################
 
 # Specify the number of subprocesses that Flake8 will use to run checks in parallel.
 jobs = auto
-
 
 ################### OUTPUT #################################
 
@@ -29,7 +43,6 @@ jobs = auto
 verbose = 0
 # Decrease the verbosity of Flake8’s output.
 quiet = 0
-
 
 ########## Formatting ##########
 
@@ -43,14 +56,12 @@ show-source = True
 # Count the number of occurrences of each error/warning code and print a report.
 statistics = True
 
-
 ########## Targets ##########
 
 # Redirect all output to the specified file.
 output-file = .flake8.log
 # Also print output to stdout if output-file has been configured.
 tee = True
-
 
 ################### FILE PATTERNS ##########################
 
@@ -76,14 +87,12 @@ exclude =
 filename =
     *.py
 
-
 ################### LINTING ################################
 
 ########## Environment ##########
 
 # Provide a custom list of builtin functions, objects, names, etc.
 builtins =
-
 
 ########## Options ##########
 
@@ -97,7 +106,6 @@ max-complexity = 10
 # Toggle whether pycodestyle should enforce matching the indentation of the opening bracket’s line.
 # incluences E131 and E133
 hang-closing = True
-
 
 ########## Rules ##########
 
@@ -133,7 +141,6 @@ per-file-ignores =
 # Enable off-by-default extensions.
 enable-extensions =
 
-
 ########## Docstring ##########
 
 # Enable PyFlakes syntax checking of doctests in docstrings.
@@ -143,3 +150,27 @@ doctests = True
 include-in-doctest =
 # Specify which files are not to be checked by PyFlakes for doctest syntax.
 exclude-in-doctest =
+
+[tool.mypy]
+python_version = 3.10
+plugins =
+    mypy_django_plugin.main
+
+# Search for type stubs in the indicated packages, useful for Django and DRF
+follow_imports = normal
+follow_imports_for_stubs = true
+
+# Strict settings, can be adjusted based on preference
+disallow_untyped_defs = True
+check_untyped_defs = True
+no_implicit_optional = True
+warn_redundant_casts = True
+warn_unused_ignores = True
+warn_return_any = True
+
+# Ignore missing stubs for other libraries you might use
+ignore_missing_imports = True
+
+# Django specific settings
+[mypy.plugins.django-stubs]
+django_settings_module = "src.config.settings.dev"
