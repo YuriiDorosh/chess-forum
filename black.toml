@@ -1,0 +1,5 @@
+[black]
+line-length = 120
+target-version = ['py36', 'py37', 'py38']
+include = '\.pyi?$'
+exclude = '\.git|\.mypy_cache|\.tox|\.venv|_build|buck-out|venv|env|my-venv|my_venv|my_env|virtual_env|v_env|\.env|build|dist'
