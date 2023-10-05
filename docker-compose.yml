@@ -1,0 +1,117 @@
+# version: '3'
+# services:
+#   # Django
+#   web:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     command: python manage.py runserver 0.0.0.0:8000
+#     volumes:
+#       - ./src:/app  
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - db
+#     env_file:
+#       - .env  
+
+#   # PostgreSQL
+#   db:
+#     image: postgres:latest
+#     environment:
+#       POSTGRES_DB: ${POSTGRES_DB}
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+#   # Redis
+#   redis:
+#     image: redis:latest
+#     ports:
+#       - "6379:6379"
+
+#   # Celery Flower
+#   flower:
+#     build:
+#       context: ./src
+#       dockerfile: ./Dockerfile # Dockerfile
+#     command: celery -A config.celery flower
+#     volumes:
+#       - ./src:/app
+#     depends_on:
+#       - db
+#       - redis
+#     ports:
+#       - "5555:5555"
+#     hostname: flower
+
+#   # Celery
+#   celery:
+#     build:
+#       context: ./src
+#       dockerfile: Dockerfile
+#     command: celery -A config.celery worker --loglevel=info
+#     volumes:
+#       - ./src:/app
+#     depends_on:
+#       - db
+#       - redis
+#     environment:
+#       - REDIS_URL=redis://redis:6379/0
+#     hostname: celery
+
+# volumes:
+#   postgres_data:
+
+
+version: '3'
+services:
+  # Django
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src:/app  
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env  
+
+  # PostgreSQL
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Redis
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  # Celery
+  celery:
+    build:
+      context: . # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! . != ./src
+      dockerfile: Dockerfile
+    command: celery -A config.celery worker --loglevel=info
+    volumes:
+      - ./src:/app
+    depends_on:
+      - db
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+    hostname: celery
+
+volumes:
+  postgres_data:
