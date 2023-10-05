@@ -24,3 +24,6 @@ test:
 
 clean:
     docker-compose down -v
+
+format:
+    black src/ --config black.toml
