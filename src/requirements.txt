@@ -1,10 +1,11 @@
-Django
-django-versatileimagefield
+Django==4.2.5
+django-versatileimagefield==3.0
 channels==3.0.5
-Pillow
-python-dotenv
-psycopg2-binary
-celery[redis]
-flower
+Pillow==10.0.1
+python-dotenv==1.0.0
+psycopg2-binary== 2.9.8
+celery==5.3.4
+redis==4.6.0
+flower==2.0.1
 
 
