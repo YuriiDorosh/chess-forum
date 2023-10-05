@@ -30,11 +30,15 @@ class UserPostModelTestCase(TestCase):
         self.assertEqual(self.post.body, "This is a test post.")
 
     def test_default_date_added(self):
-        new_post = UserPost.objects.create(user=self.user, title="Another Test Post", body="This is another test post.")
+        new_post = UserPost.objects.create(
+            user=self.user, title="Another Test Post", body="This is another test post."
+        )
         self.assertIsNotNone(new_post.date_added)
 
     def test_optional_game_link(self):
         post_without_game_link = UserPost.objects.create(
-            user=self.user, title="Post Without Game Link", body="This post has no game link."
+            user=self.user,
+            title="Post Without Game Link",
+            body="This post has no game link.",
         )
         self.assertIsNone(post_without_game_link.game_link)

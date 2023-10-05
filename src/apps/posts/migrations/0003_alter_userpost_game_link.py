@@ -14,7 +14,10 @@ class Migration(migrations.Migration):
             model_name="userpost",
             name="game_link",
             field=models.URLField(
-                blank=True, max_length=60, null=True, validators=[core.validators.validate_chess_game_url]
+                blank=True,
+                max_length=60,
+                null=True,
+                validators=[core.validators.validate_chess_game_url],
             ),
         ),
     ]

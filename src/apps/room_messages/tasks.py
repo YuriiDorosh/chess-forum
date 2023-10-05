@@ -1,7 +1,9 @@
-from celery import shared_task
 from datetime import timedelta
+
+from celery import shared_task
 from django.utils import timezone
 from room_messages.models.message import Message
+
 
 @shared_task
 def delete_old_messages():

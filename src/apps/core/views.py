@@ -5,7 +5,9 @@ from posts.models.post import UserPost
 
 
 def home(request):
-    top_posts = UserPost.objects.annotate(like_count=Count("likes")).order_by("-like_count")[:10]
+    top_posts = UserPost.objects.annotate(like_count=Count("likes")).order_by(
+        "-like_count"
+    )[:10]
 
     open_discussions = Discussion.objects.filter(closed=False)
 

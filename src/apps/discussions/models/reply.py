@@ -20,7 +20,9 @@ class Reply(BaseModel):
 
     """
 
-    discussion = models.ForeignKey(Discussion, on_delete=models.CASCADE, related_name="replies")
+    discussion = models.ForeignKey(
+        Discussion, on_delete=models.CASCADE, related_name="replies"
+    )
     text = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     image = VersatileImageField(null=True, blank=True, upload_to="images")

@@ -17,22 +17,32 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="userpost",
             name="likes",
-            field=models.ManyToManyField(related_name="liked_posts", through="posts.Like", to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                related_name="liked_posts",
+                through="posts.Like",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AddField(
             model_name="userpost",
             name="user",
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AddField(
             model_name="like",
             name="post",
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="posts.userpost"),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="posts.userpost"
+            ),
         ),
         migrations.AddField(
             model_name="like",
             name="user",
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AlterUniqueTogether(
             name="like",

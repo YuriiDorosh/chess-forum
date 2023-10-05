@@ -1,4 +1,3 @@
-from django.contrib import admin
 from discussions.models.discussion import Discussion
 from discussions.models.reply import Reply
 from discussions.models.reply_like import ReplyLike

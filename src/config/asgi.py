@@ -12,5 +12,8 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from apps.rooms import routing
 
 application = ProtocolTypeRouter(
-    {"http": django_application, "websocket": AuthMiddlewareStack(URLRouter(routing.websocket_urlpatterns))}
+    {
+        "http": django_application,
+        "websocket": AuthMiddlewareStack(URLRouter(routing.websocket_urlpatterns)),
+    }
 )

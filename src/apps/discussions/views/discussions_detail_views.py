@@ -16,7 +16,9 @@ class DiscussionListView(View):
 
     def get(self, request):
         discussions = DiscussionService.get_all_discussions()
-        return render(request, "discussions/discussion_list.html", {"discussions": discussions})
+        return render(
+            request, "discussions/discussion_list.html", {"discussions": discussions}
+        )
 
 
 class DiscussionDetailView(View):
@@ -48,7 +50,9 @@ class DiscussionDetailView(View):
         if request.method == "POST":
             reply_form = ReplyForm(request.POST, request.FILES)
             if reply_form.is_valid():
-                ReplyService.create_reply(discussion, request.user, reply_form.cleaned_data)
+                ReplyService.create_reply(
+                    discussion, request.user, reply_form.cleaned_data
+                )
                 return redirect("discussion_detail", discussion_id=discussion_id)
 
             if "like_reply" in request.POST:

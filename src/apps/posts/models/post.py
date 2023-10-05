@@ -19,7 +19,9 @@ class UserPost(BaseModel):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    game_link = models.URLField(max_length=60, blank=True, null=True, validators=[validate_chess_game_url])
+    game_link = models.URLField(
+        max_length=60, blank=True, null=True, validators=[validate_chess_game_url]
+    )
     body = models.TextField()
     likes = models.ManyToManyField(User, through="Like", related_name="liked_posts")
 

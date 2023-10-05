@@ -19,13 +19,32 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Discussion",
             fields=[
-                ("id", models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
                 ("date_added", models.DateTimeField(auto_now_add=True)),
                 ("title", models.CharField(max_length=255)),
                 ("text", models.TextField()),
-                ("image", versatileimagefield.fields.VersatileImageField(blank=True, null=True, upload_to="images")),
+                (
+                    "image",
+                    versatileimagefield.fields.VersatileImageField(
+                        blank=True, null=True, upload_to="images"
+                    ),
+                ),
                 ("closed", models.BooleanField(default=False)),
-                ("author", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
                 "ordering": ("-date_added",),
@@ -35,15 +54,36 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Reply",
             fields=[
-                ("id", models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
                 ("date_added", models.DateTimeField(auto_now_add=True)),
                 ("text", models.TextField()),
-                ("image", versatileimagefield.fields.VersatileImageField(blank=True, null=True, upload_to="images")),
-                ("author", models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "image",
+                    versatileimagefield.fields.VersatileImageField(
+                        blank=True, null=True, upload_to="images"
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
                 (
                     "discussion",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, related_name="replies", to="discussions.discussion"
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="replies",
+                        to="discussions.discussion",
                     ),
                 ),
             ],

@@ -15,7 +15,10 @@ class Migration(migrations.Migration):
             model_name="user",
             name="chess_profile_url",
             field=models.URLField(
-                blank=True, max_length=60, null=True, validators=[apps.core.validators.validate_chess_profile_url]
+                blank=True,
+                max_length=60,
+                null=True,
+                validators=[apps.core.validators.validate_chess_profile_url],
             ),
         ),
     ]

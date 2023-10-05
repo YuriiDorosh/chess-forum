@@ -18,5 +18,7 @@ class RoomModelTestCase(TestCase):
             duplicate_room.save()
 
     def test_premium_flag(self):
-        premium_room = Room.objects.create(name="Premium Room", slug="premium-room", premium=True)
+        premium_room = Room.objects.create(
+            name="Premium Room", slug="premium-room", premium=True
+        )
         self.assertTrue(premium_room.premium)

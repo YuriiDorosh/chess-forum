@@ -49,4 +49,8 @@ class ClosedDiscussionsView(View):
 
     def get(self, request):
         closed_discussions = DiscussionService.get_closed_discussions()
-        return render(request, "discussions/closed_discussions.html", {"closed_discussions": closed_discussions})
+        return render(
+            request,
+            "discussions/closed_discussions.html",
+            {"closed_discussions": closed_discussions},
+        )

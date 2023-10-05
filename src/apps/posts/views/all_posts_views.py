@@ -33,9 +33,17 @@ class AllUserPostsView(View):
         sort = request.GET.get("sort")
 
         if sort == "newest":
-            posts = UserPost.objects.all().order_by("-date_added").annotate(likes_count=Count("likes"))
+            posts = (
+                UserPost.objects.all()
+                .order_by("-date_added")
+                .annotate(likes_count=Count("likes"))
+            )
         elif sort == "most_likes":
-            posts = UserPost.objects.all().annotate(likes_count=Count("likes")).order_by("-likes_count")
+            posts = (
+                UserPost.objects.all()
+                .annotate(likes_count=Count("likes"))
+                .order_by("-likes_count")
+            )
         else:
             posts = UserPost.objects.all().annotate(likes_count=Count("likes"))
 
