@@ -1,32 +1,32 @@
 setup:
-	docker-compose build
-	docker-compose run web python manage.py migrate
-	docker-compose run web python manage.py createsuperuser
+	sudo docker-compose build
+	sudo docker-compose run web python manage.py migrate
+	sudo docker-compose run web python manage.py createsuperuser
 
 run:
-	docker-compose up
+	sudo docker-compose up
 
 stop:
-	docker-compose down
+	sudo docker-compose down
 
 migrate:
-	docker-compose run web python manage.py migrate
+	sudo docker-compose run web python manage.py migrate
 
 createsuperuser:
-	docker-compose run web python manage.py createsuperuser
+	sudo docker-compose run web python manage.py createsuperuser
 
 
 shell:
-	docker-compose run web python manage.py shell
+	sudo docker-compose run web python manage.py shell
 
 test:
-	docker-compose run web python manage.py test
+	sudo docker-compose run web python manage.py test
 
 clean:
-	docker-compose down -v
+	sudo docker-compose down -v
 
 format:
 	black src/ --config black.toml
 
 docker_format:
-	docker-compose run web black src/ --config black.toml
+	sudo docker-compose run web black src/ --config black.toml
