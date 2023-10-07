@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.urls import reverse_lazy
 
+
 class DiscussionListView(View):
     """
     View for displaying a list of discussions.
@@ -32,39 +33,34 @@ class DiscussionDetailView(View):
     Processes the form data to create a reply, toggle a reply like, or close the discussion (if authorized).
     """
 
-
-
     def get(self, request, discussion_id):
         discussion = DiscussionService.get_discussion_by_id(discussion_id)
         replies = ReplyService.get_replies_for_discussion(discussion)
-        initial_data = {"discussion_id": discussion_id}  
-        reply_form = ReplyForm(initial=initial_data)  
+        initial_data = {"discussion_id": discussion_id}
+        reply_form = ReplyForm(initial=initial_data)
         return render(
-        request,
-        "discussions/discussion_detail.html",
-        {"discussion": discussion, "replies": replies, "reply_form": reply_form},
-    )
+            request,
+            "discussions/discussion_detail.html",
+            {"discussion": discussion, "replies": replies, "reply_form": reply_form},
+        )
 
-
-    
     def post(self, request, discussion_id):
         discussion = DiscussionService.get_discussion_by_id(discussion_id)
         replies = ReplyService.get_replies_for_discussion(discussion)
-
-
 
         if request.method == "POST":
             if "close_discussion" in request.POST and request.user == discussion.author:
                 DiscussionService.close_discussion(discussion)
                 return redirect("discussions:discussion_list")
 
-        
             reply_form = ReplyForm(request.POST, request.FILES)
             if reply_form.is_valid():
                 ReplyService.create_reply(
                     discussion, request.user, reply_form.cleaned_data
-            )
-                return redirect("discussions:discussion_detail", discussion_id=discussion_id)
+                )
+                return redirect(
+                    "discussions:discussion_detail", discussion_id=discussion_id
+                )
 
             if "like_reply" in request.POST:
                 reply_id = request.POST["like_reply"]
@@ -72,11 +68,10 @@ class DiscussionDetailView(View):
                 ReplyLikeService.toggle_like(request.user, reply_to_like)
 
         else:
-            reply_form = ReplyForm()  
+            reply_form = ReplyForm()
 
         return render(
-        request,
-        "discussions/discussion_detail.html",
-        {"discussion": discussion, "replies": replies, "reply_form": reply_form},
-    )
-
+            request,
+            "discussions/discussion_detail.html",
+            {"discussion": discussion, "replies": replies, "reply_form": reply_form},
+        )

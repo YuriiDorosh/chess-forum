@@ -9,8 +9,6 @@ class ReplyForm(forms.ModelForm):
     class Meta:
         model = Reply
         fields = ["text", "image"]
-        
-        
 
     def clean(self):
         cleaned_data = super().clean()
