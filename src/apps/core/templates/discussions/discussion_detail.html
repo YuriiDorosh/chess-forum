@@ -22,45 +22,53 @@
   {% endif %}
 {% endif %}
 
+{% if not discussion.closed %}
   {% if user.is_authenticated %}
-  <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Create Reply</h2>
-    {{ reply_form.as_p }}
-    <button type="submit">Submit Reply</button>
-  </form>
+      {{ reply_form.as_p }}
+      <button type="submit">Submit Reply</button>
+    </form>
+  {% endif %}
+  {% else %}
+    <b>This discussion is closed and no further replies are allowed.</b>
   {% endif %}
   
 
 
-
+  <hr>
   <h2>Replies</h2>
-  <ul>
-    {% for reply in replies %}
-    <li>
-      <a href="{% url 'users:profile' reply.author.id %}">
-      {{ reply.author }}
-      </a>
-      <br>
-      {{ reply.text }}
-      <br>
-      {% if reply.image %}
-      image:
-      <br>
-        <img src="{{ reply.image.url }}" alt="{{ reply.title }}" />
-      {% endif %}
-      <br>
-      <span>Like Count: {{ reply.like_count }}</span>
-      <form method="post">
-        {% csrf_token %}
-        {% if user.is_authenticated %}
-        <button type="submit" name="like_reply" value="{{ reply.id }}">Like</button>
+  {% if replies %}
+    <ul>
+      {% for reply in replies %}
+      <li>
+        <a href="{% url 'users:profile' reply.author.id %}">
+        {{ reply.author }}
+        </a>
+        <br>
+        {{ reply.text }}
+        <br>
+        {% if reply.image %}
+        image:
+        <br>
+          <img src="{{ reply.image.url }}" alt="{{ reply.title }}" />
         {% endif %}
-      </form>
-    </li>
-  {% endfor %}
-</ul>
-
+        <br>
+        <span>Like Count: {{ reply.like_count }}</span>
+        <form method="post">
+          {% csrf_token %}
+          {% if user.is_authenticated %}
+          <button type="submit" name="like_reply" value="{{ reply.id }}">Like</button>
+          {% endif %}
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No replies yet.</p>
+  {% endif %}
+<hr>
 <a href="{% url 'discussions:discussion_list' %}">Back to Discussion List</a>
 </div>
 {% endblock %}
