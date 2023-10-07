@@ -9,6 +9,8 @@ class ReplyForm(forms.ModelForm):
     class Meta:
         model = Reply
         fields = ["text", "image"]
+        
+        
 
     def clean(self):
         cleaned_data = super().clean()
@@ -18,5 +20,5 @@ class ReplyForm(forms.ModelForm):
             if discussion.closed:
                 raise forms.ValidationError("This discussion is closed.")
         except Discussion.DoesNotExist as e:
-            return f"Discussion doen`t exist: {e}"
+            raise forms.ValidationError(f"Discussion doesn't exist: {e}")
         return cleaned_data
