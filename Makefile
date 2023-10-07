@@ -15,7 +15,6 @@ migrate:
 createsuperuser:
 	sudo docker-compose run web python manage.py createsuperuser
 
-
 shell:
 	sudo docker-compose run web python manage.py shell
 
@@ -30,3 +29,6 @@ format:
 
 docker_format:
 	sudo docker-compose run web black src/ --config black.toml
+
+dumpdata:
+	sudo docker-compose run web python manage.py dumpdata > alldata.json
