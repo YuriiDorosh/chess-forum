@@ -42,33 +42,38 @@
   {% if replies %}
     <ul>
       {% for reply in replies %}
-      <li>
-        <a href="{% url 'users:profile' reply.author.id %}">
-        {{ reply.author }}
-        </a>
-        <br>
-        {{ reply.text }}
-        <br>
-        {% if reply.image %}
-        image:
-        <br>
-          <img src="{{ reply.image.url }}" alt="{{ reply.title }}" />
-        {% endif %}
-        <br>
-        <span>Like Count: {{ reply.like_count }}</span>
-        <form method="post">
-          {% csrf_token %}
-          {% if user.is_authenticated %}
-          <button type="submit" name="like_reply" value="{{ reply.id }}">Like</button>
+        <li>
+          <a href="{% url 'users:profile' reply.author.id %}">
+            {{ reply.author }}
+          </a>
+          <br>
+          {{ reply.text }}
+          <br>
+          {% if reply.image %}
+            image:
+            <br>
+            <img src="{{ reply.image.url }}" alt="{{ reply.title }}" />
           {% endif %}
-        </form>
-      </li>
+          <br>
+          <span>Like Count: {{ reply.likes.count }}</span>
+          {% if not discussion.closed %}
+            <form method="post">
+              {% csrf_token %}
+              {% if user.is_authenticated %}
+                  <input type="hidden" name="reply_id" value="{{ reply.id }}">
+                  <button type="submit" name="like_reply">Like</button>
+              {% endif %}
+          </form>
+          
+          
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
   {% else %}
     <p>No replies yet.</p>
   {% endif %}
-<hr>
-<a href="{% url 'discussions:discussion_list' %}">Back to Discussion List</a>
+  <hr>
+  <a href="{% url 'discussions:discussion_list' %}">Back to Discussion List</a>
 </div>
 {% endblock %}
