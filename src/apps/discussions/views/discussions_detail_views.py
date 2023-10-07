@@ -72,7 +72,7 @@ class DiscussionDetailView(View):
                 ReplyLikeService.toggle_like(request.user, reply_to_like)
 
         else:
-            reply_form = ReplyForm()  # Створюємо пусту форму для відображення
+            reply_form = ReplyForm()  
 
         return render(
         request,
