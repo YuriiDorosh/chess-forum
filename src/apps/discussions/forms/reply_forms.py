@@ -15,6 +15,8 @@ class ReplyForm(forms.ModelForm):
         discussion_id = cleaned_data.get("discussion_id")
         try:
             discussion = Discussion.objects.get(pk=discussion_id)
+            if not discussion:
+                raise forms.ValidationError("Discussion doesn't exist.")
             if discussion.closed:
                 raise forms.ValidationError("This discussion is closed.")
         except Discussion.DoesNotExist as e:
