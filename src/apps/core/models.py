@@ -15,22 +15,3 @@ class BaseModel(models.Model):
         ordering = ("-date_added",)
 
 
-class BaseImage(models.Model):
-    """Basic model for images"""
-
-    title = models.CharField(max_length=200, null=True, blank=True)
-    alt = models.CharField(max_length=200, null=True, blank=True)
-    image = VersatileImageField(null=True, blank=True, upload_to="images")
-
-    class Meta:
-        abstract = True
-        verbose_name = "Image"
-        verbose_name_plural = "Images"
-
-    def __str__(self):
-        res = ""
-        if self.title:
-            res = self.title
-        else:
-            res = self.image.url
-        return res
