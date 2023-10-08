@@ -34,6 +34,11 @@
         <br></br>
         <p><strong>Added :</strong>{{ post.date_added }} </p>
         <br></br>
+            
+        {% if post.image %}
+          <p><strong>Image:</strong></p>
+          <img src="{{ post.image.first.image.url }}" alt="{{ post.title }}">
+        {% endif %}
 
         {% if user.is_authenticated %}
         <form method="post" action="{% url 'posts:like_post' post.id %}">
