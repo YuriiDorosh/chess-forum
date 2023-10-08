@@ -143,6 +143,11 @@
             {% for post in user_posts %}
             <div class="post">
                 <h3>{{ post.title }}</h3>
+                {% if post.image %}
+                    <p><strong>Image:</strong></p>
+                    <img src="{{ post.image.first.image.url }}" alt="{{ post.title }}">
+                {% endif %}
+
                 {% if post.game_link %}
                     <p><strong>Game Link:</strong> <a href="{{ post.game_link }}" target="_blank">{{ post.game_link }}</a></p>
                 {% endif %}
