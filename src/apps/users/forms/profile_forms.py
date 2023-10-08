@@ -13,9 +13,7 @@ class UserProfileForm(UserChangeForm):
     username = forms.CharField(
         widget=forms.TextInput(attrs={"class": "form-control py-4", "readonly": True})
     )
-    bio = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control py-4"})
-    )
+    bio = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control py-4"}))
     email = forms.CharField(
         widget=forms.TextInput(attrs={"class": "form-control py-4", "readonly": True})
     )
