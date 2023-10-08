@@ -1,0 +1,80 @@
+Table Like { 
+  id UUID [primary key] 
+  user_id UUID [ref: > User.id] 
+  post_id UUID [ref: > UserPost.id] 
+  date_added DateTime 
+ 
+  Indexes { 
+    (user_id, post_id) [unique] 
+  } 
+} 
+ 
+Table UserPost { 
+  id UUID [primary key] 
+  user_id UUID [ref: > User.id] 
+  title Char(100) 
+  game_link URL(60) [null] 
+  body Text 
+  date_added DateTime 
+} 
+ 
+Table UserPostImage { 
+  id id [primary key] 
+  post UUID [ref: > UserPost.id] 
+  image ProcessedImage 
+} 
+ 
+Table Message { 
+  id UUID [primary key] 
+  room_id UUID [ref: > Room.id] 
+  user_id UUID [ref: > User.id] 
+  content Text 
+  date_added DateTime 
+} 
+ 
+Table Room { 
+  id UUID [primary key] 
+  name Char(30) [unique] 
+  slug Slug [unique] 
+  premium Boolean [default: false] 
+  date_added DateTime 
+} 
+ 
+Table User { 
+  id UUID [primary key] 
+  first_name Char(150) [null] 
+  last_name Char(150) [null] 
+  username Char(30) [unique] 
+  bio Text [null] 
+  photo Image [null] 
+  telegram_id Char(30) [null] 
+  chess_profile_url URL(60) [null] 
+  subscriber Boolean [default: false] 
+  date_added DateTime 
+} 
+ 
+Table Discussion { 
+  id UUID [primary key] 
+  title Char(255) 
+  text Text 
+  author_id UUID [ref: > User.id] 
+  image Image [null] 
+  closed Boolean [default: false] 
+  date_added DateTime 
+} 
+ 
+Table ReplyLike { 
+  id UUID [primary key] 
+  reply_id UUID [ref: > Reply.id] 
+  user_id UUID [ref: > User.id] 
+  date_added DateTime 
+} 
+ 
+Table Reply { 
+  id UUID [primary key] 
+  discussion_id UUID [ref: > Discussion.id] 
+  text Text 
+  author_id UUID [ref: > User.id] 
+  image Image [null] 
+  date_added DateTime 
+}
