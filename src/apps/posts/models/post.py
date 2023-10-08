@@ -2,7 +2,14 @@ from core.models import BaseModel
 from core.validators import validate_chess_game_url
 from django.db import models
 from users.models.user import User
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
+from datetime import date
+from django.utils import timezone
 
+def user_post_image_upload_path(instance, filename):
+    today = date.today()
+    return f'user_post_images/{today.year}/{today.month}/{today.day}/{timezone.now().strftime("%H-%M-%S")}_{filename}'
 
 class UserPost(BaseModel):
     """
@@ -27,3 +34,28 @@ class UserPost(BaseModel):
 
     def __str__(self) -> str:
         return f"User: {self.user} | Post: {self.title} | ID : {self.id}"
+
+
+class UserPostImage(models.Model):
+    """
+    A model representing images associated with user posts.
+
+    Attributes:
+        post (ForeignKey): The post to which the image is attached.
+        image (ProcessedImageField): The processed image file.
+    """
+    
+    post = models.ForeignKey(UserPost, on_delete=models.CASCADE, related_name='image')
+    image = ProcessedImageField(
+        upload_to=user_post_image_upload_path,
+        processors=[ResizeToFit(800, 800)],
+        format="JPEG",
+        options={"quality": 90},
+        blank=True,
+        null=True,
+    )
+    
+    def __str__(self) -> str:
+        return f"Added a photo to the post: {self.post} "
+
+
