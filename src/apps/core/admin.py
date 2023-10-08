@@ -2,8 +2,7 @@ from discussions.models.discussion import Discussion
 from discussions.models.reply import Reply
 from discussions.models.reply_like import ReplyLike
 from django.contrib import admin
-from posts.models.post import UserPost
-from posts.models.post import UserPostImage
+from posts.models.post import UserPost, UserPostImage
 from posts.models.post_likes import Like
 from room_messages.models.message import Message
 from rooms.models.room import Room
@@ -21,6 +20,7 @@ class UserPostAdmin(admin.ModelAdmin):
     list_display = ("user", "title", "date_added")
     list_filter = ("user", "date_added")
     search_fields = ("title", "body")
+
 
 @admin.register(UserPostImage)
 class UserPostImageAdmin(admin.ModelAdmin):

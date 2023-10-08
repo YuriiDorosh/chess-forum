@@ -50,7 +50,7 @@ class CreateUserPostView(View):
         form = UserPostCreateForm(request.POST, request.FILES)
         if form.is_valid():
             form_data = form.cleaned_data
-            image = form.cleaned_data['image'] if 'image' in form.cleaned_data else None
+            image = form.cleaned_data["image"] if "image" in form.cleaned_data else None
 
             UserPostService.create_user_post(request.user, form_data, image)
             return redirect("posts:all_user_posts")
@@ -121,7 +121,7 @@ class EditUserPostView(View):
         if post.user != request.user:
             raise Http404("Post not found or you don't have permission to edit it")
 
-        form = UserPostUpdateForm(request.POST, request.FILES,instance=post)
+        form = UserPostUpdateForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             UserPostService.edit_user_post(post_id, request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")

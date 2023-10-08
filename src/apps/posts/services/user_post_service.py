@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from posts.models.post import UserPost, UserPostImage
 
+
 class UserPostService:
     @staticmethod
     def create_user_post(user, form_data, image=None):
@@ -11,11 +12,11 @@ class UserPostService:
             body=form_data["body"],
         )
         new_post.save()
-        
+
         if image:
             post_image = UserPostImage(post=new_post, image=image)
             post_image.save()
-        
+
         return new_post
 
     @staticmethod
@@ -25,9 +26,9 @@ class UserPostService:
         post.game_link = form_data["game_link"]
         post.body = form_data["body"]
         post.save()
-        
+
         if image:
             post_image = UserPostImage(post=post, image=image)
             post_image.save()
-        
+
         return post
