@@ -51,6 +51,7 @@ class CreateUserPostView(View):
         if form.is_valid():
             UserPostService.create_user_post(request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")
+        return render(request, self.template_name, {"form": form})
 
 
 class EditUserPostView(View):
@@ -69,6 +70,12 @@ class EditUserPostView(View):
     """
 
     template_name = "posts/edit_post.html"
+    
+    @staticmethod
+    def get_user(request):
+        if request.user.is_authenticated:
+            return request.user
+        return None
 
     @login_required
     def get(self, request, post_id):
@@ -83,6 +90,7 @@ class EditUserPostView(View):
             HttpResponse: Response with the post editing form.
         """
         post = get_object_or_404(UserPost, id=post_id)
+        user = self.get_user(request)
 
         if post.user != request.user:
             raise Http404("Post not found or you don't have permission to edit it")
@@ -104,6 +112,7 @@ class EditUserPostView(View):
             after successfully editing a user post.
         """
         post = get_object_or_404(UserPost, id=post_id)
+        user = self.get_user(request)
 
         if post.user != request.user:
             raise Http404("Post not found or you don't have permission to edit it")
