@@ -1,5 +1,6 @@
 Django==4.2.5
 django-versatileimagefield==3.0
+django-imagekit==4.1.0
 channels==3.0.5
 Pillow==10.0.1
 python-dotenv==1.0.0
