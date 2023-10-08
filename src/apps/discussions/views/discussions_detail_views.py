@@ -7,7 +7,6 @@ from django.shortcuts import redirect, render
 from django.views import View
 
 
-
 class DiscussionListView(View):
     """
     View for displaying a list of discussions.
@@ -63,7 +62,7 @@ class DiscussionDetailView(View):
                     "discussions:discussion_detail", discussion_id=discussion_id
                 )
 
-            like_form = ReplyLikeForm(request.POST)  
+            like_form = ReplyLikeForm(request.POST)
             if like_form.is_valid():
                 reply_id = like_form.cleaned_data["reply_id"]
                 reply_to_like = ReplyService.get_reply_by_id(reply_id)

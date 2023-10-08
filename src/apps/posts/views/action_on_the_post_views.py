@@ -70,7 +70,7 @@ class EditUserPostView(View):
     """
 
     template_name = "posts/edit_post.html"
-    
+
     @staticmethod
     def get_user(request):
         if request.user.is_authenticated:
