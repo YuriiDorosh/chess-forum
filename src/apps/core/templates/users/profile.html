@@ -118,6 +118,10 @@
             {% if user.chess_profile_url %}
                 <p><strong>Chess Profile:</strong> <a href="{{ user.chess_profile_url }}" target="_blank">{{ user.chess_profile_url }}</a></p>
             {% endif %}
+
+            {% if user.bio %}
+                <p><strong>Bio:</strong> {{ user.bio }}</p>
+            {% endif %}
             
             {% if user.subscriber %}
                 <p><strong>Subscriber:</strong> Yes</p>
