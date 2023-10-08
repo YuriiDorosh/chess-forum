@@ -47,10 +47,14 @@ class CreateUserPostView(View):
             HttpResponseRedirect: Redirects the user to the page with a list of posts
             after successfully creating a new post.
         """
-        form = UserPostCreateForm(request.POST)
+        form = UserPostCreateForm(request.POST, request.FILES)
         if form.is_valid():
-            UserPostService.create_user_post(request.user, form.cleaned_data)
+            form_data = form.cleaned_data
+            image = form.cleaned_data['image'] if 'image' in form.cleaned_data else None
+
+            UserPostService.create_user_post(request.user, form_data, image)
             return redirect("posts:all_user_posts")
+
         return render(request, self.template_name, {"form": form})
 
 
@@ -117,7 +121,7 @@ class EditUserPostView(View):
         if post.user != request.user:
             raise Http404("Post not found or you don't have permission to edit it")
 
-        form = UserPostUpdateForm(request.POST, instance=post)
+        form = UserPostUpdateForm(request.POST, request.FILES,instance=post)
         if form.is_valid():
             UserPostService.edit_user_post(post_id, request.user, form.cleaned_data)
             return redirect("posts:all_user_posts")
