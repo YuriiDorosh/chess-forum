@@ -2,7 +2,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/MishaVyb/weather-collector">
+  <a href="https://github.com/YuriiDorosh/chess-forum">
     <img src="doc/readme_content/index.png" alt="Logo">
   </a>
 
