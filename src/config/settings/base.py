@@ -31,16 +31,18 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY = [
+    "rest_framework",
     "channels",
-    "core",
 ]
 
 LOCAL_APPS = [
+    "core",
     "users",
     "posts",
     "rooms",
     "room_messages",
     "discussions",
+    "api",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY + LOCAL_APPS
@@ -139,8 +141,18 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_URL = "users:login"
 LOGIN_REDIRECT_URL = "/users/profile/"
 
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
 CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_ACCEPT_CONTENT = ["json"]
